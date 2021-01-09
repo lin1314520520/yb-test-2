@@ -6,7 +6,7 @@ from yiban import YiBan
 import util
 if __name__ == '__main__':
     try:
-        yb = YiBan("18670750478", "SYT798527") # FIXME:账号密码
+        yb = YiBan("19974853664", "jxh5116883187") # FIXME:账号密码
         yb.login()
         yb.getHome()
         print("登录成功 %s"%yb.name)
