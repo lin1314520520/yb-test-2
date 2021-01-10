@@ -3,21 +3,22 @@ name: Auto
 on:
   push:
   schedule:
-      - cron: '5 16 * * *'  # scheduled at 06:00 (UTC+8) everyday
+      - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
+    # if: github.ref == 'refs/heads/master'
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: master
+      - name: Set up python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
       - name: Run app
         run: |
           python  main.py
