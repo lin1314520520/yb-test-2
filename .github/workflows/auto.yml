@@ -1,4 +1,3 @@
- - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
 on:
   workflow_dispatch:
   push:
