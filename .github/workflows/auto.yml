@@ -1,19 +1,25 @@
-name: Auto
-
+ - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
 on:
+  workflow_dispatch:
   push:
   schedule:
-      - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+   - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master'
-
+    strategy:
+      matrix:
+        python-version: [3.8]
     steps:
-      - name: Set up python
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run app
         run: |
-          python  main.py
+          python main.py 
