@@ -10,11 +10,6 @@ jobs:
     # if: github.ref == 'refs/heads/master'
 
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: master
       - name: Set up python
         uses: actions/setup-python@v2
         with:
