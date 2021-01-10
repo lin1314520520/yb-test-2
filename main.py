@@ -13,9 +13,9 @@ if __name__ == '__main__':
         yb.auth()
         all_task = yb.getUncompletedList()["data"]
         all_task = list(filter(lambda x: "体温检测" in x["Title"], all_task))  # FIXME: 长理的打卡任务标题均含有"体温检测"字样 此举是防止其他表单干扰 （可能会变）
-        if len(all_task) == 0:
-            print("没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。")
-        else:
+        #if len(all_task) == 0:
+            #print("没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。")
+        #else:
             all_task_sort = util.desc_sort(all_task, "StartTime")  # 按开始时间排序
             new_task = all_task_sort[0]  # 只取一个最新的
             print("找到未上报的任务：", new_task)
