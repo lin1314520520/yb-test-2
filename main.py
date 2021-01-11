@@ -4,9 +4,10 @@ import time
 import traceback
 from yiban import YiBan
 import util
+import requests
 if __name__ == '__main__':
     try:
-        yb = YiBan("13968865047", "SYT798527") # FIXME:账号密码
+        yb = YiBan("18670750478", "SYT798527") # FIXME:账号密码
         yb.login()
         yb.getHome()
         print("登录成功 %s"%yb.name)
@@ -15,6 +16,14 @@ if __name__ == '__main__':
         all_task = list(filter(lambda x: "体温检测" in x["Title"], all_task))  # FIXME: 长理的打卡任务标题均含有"体温检测"字样 此举是防止其他表单干扰 （可能会变）
         if len(all_task) == 0:
             print("没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。")
+            title='没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。'
+            message='本次签到或已失败请登录易班查看'
+            api='https://sc.ftqq.com/SCU131344T1e6893da59fb13683fa65b32bb85f3ee5fc4d90e411e2.send'
+            data ={
+                    "text" : title,
+                    "desp" : message
+                  }
+            req = requests.post(api, data=data)   
         else:
             all_task_sort = util.desc_sort(all_task, "StartTime")  # 按开始时间排序
             new_task = all_task_sort[0]  # 只取一个最新的
@@ -36,6 +45,15 @@ if __name__ == '__main__':
                 share_url = yb.getShareUrl(submit_result["data"])["data"]["uri"]
                 print("已完成一次体温上报[%s]" % task_detail["Title"])
                 print("访问此网址查看详情：%s" % share_url)
+                skey = 'SCU131344T1e6893da59fb13683fa65b32bb85f3ee5fc4d90e411e2'  # 你的server酱skey
+                title='已完成一次签到'
+                message=share_url
+                api='https://sc.ftqq.com/SCU131344T1e6893da59fb13683fa65b32bb85f3ee5fc4d90e411e2.send'
+                data ={
+                        "text" : title,
+                        "desp" : message
+                      }
+                req = requests.post(api, data=data)        
             else:
                 print("[%s]遇到了一些错误:%s" % (task_detail["Title"], submit_result["msg"]))
     except Exception as e:
