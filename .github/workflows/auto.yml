@@ -19,10 +19,9 @@ jobs:
         run: |
           pip3 install -r requirements.txt -i https://pypi.douban.com/simple
       - name: Working
-        env: |
+        env: 
           SCKEY: ${{ secrets.SCKEY }}
           PHONE: ${{ secrets.PHONE }}
           PASS: ${{ secrets.PASS }}
-      - name: Run app
         run: |
           python main.py 
