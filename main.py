@@ -6,6 +6,7 @@ from yiban import YiBan
 import util
 import requests
 if __name__ == '__main__':
+    SCKEY = os.environ["SCKEY"]
     try:
         yb = YiBan("18670750478", "SYT798527") # FIXME:账号密码
         yb.login()
@@ -18,7 +19,7 @@ if __name__ == '__main__':
             print("没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。")
             title='没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。'
             message='本次签到或已失败请登录易班查看'
-            api='https://sc.ftqq.com/SCU131344T1e6893da59fb13683fa65b32bb85f3ee5fc4d90e411e2.send'
+            api = 'https://sc.ftqq.com/%s.send'%SCKEY
             data ={
                     "text" : title,
                     "desp" : message
@@ -45,10 +46,9 @@ if __name__ == '__main__':
                 share_url = yb.getShareUrl(submit_result["data"])["data"]["uri"]
                 print("已完成一次体温上报[%s]" % task_detail["Title"])
                 print("访问此网址查看详情：%s" % share_url)
-                skey = 'SCU131344T1e6893da59fb13683fa65b32bb85f3ee5fc4d90e411e2'  # 你的server酱skey
                 title='已完成一次签到'
                 message=share_url
-                api='https://sc.ftqq.com/SCU131344T1e6893da59fb13683fa65b32bb85f3ee5fc4d90e411e2.send'
+                api = 'https://sc.ftqq.com/%s.send'%SCKEY
                 data ={
                         "text" : title,
                         "desp" : message
