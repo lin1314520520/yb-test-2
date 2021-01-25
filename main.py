@@ -5,6 +5,7 @@ import traceback
 from yiban import YiBan
 import util
 import requests
+import os
 if __name__ == '__main__':
     SCKEY = os.environ["SCKEY"]
     try:
