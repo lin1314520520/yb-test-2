@@ -21,7 +21,7 @@ if __name__ == '__main__':
         if len(all_task) == 0:
             print("没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。")
             title='没找到今天长理体温上报的任务，可能是你已经上报，如果不是请手动上报。'
-            message='本次签到或已失败请登录易班查看'
+            message='本次易班签到或已失败请登录易班查看详情'
             api = 'https://sc.ftqq.com/%s.send'%SCKEY
             data ={
                     "text" : title,
