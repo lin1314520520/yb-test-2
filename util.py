@@ -2,7 +2,8 @@ import datetime
 import time
 import os
 
-os.environ['TZ'] = 'Asia/Shanghai'
+os.environ[‘TZ’] = ‘Asia/Shanghai’
+time.tzset()
 
 def get_time():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
