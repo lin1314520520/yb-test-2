@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
   schedule:
-   - cron: "0 5 * * *"  # scheduled at 14:00 (UTC+8) everyday
+   - cron: "0 0 * * *"  # scheduled at 8:00 (UTC+8) everyday
 jobs:
   build:
     runs-on: ubuntu-latest
