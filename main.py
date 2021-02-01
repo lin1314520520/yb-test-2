@@ -41,7 +41,7 @@ if __name__ == '__main__':
             # FIXME: 以下是长沙理工大学最新的表单信息，由于某些值（检测时间）必须是动态的，所以只能将form表单写死在这里 （可能会变）
             dict_form = {"2fca911d0600717cc5c2f57fc3702787": ["浙江省", "温州市", "苍南县"],
                         "cab886bf693f23a34ed78ed71deaadc3": yb.name,
-                        "b418fa886b6a38bdce72569a70b1fa10": ["36.2", "36.3", "36.4", "36.5", "36.6", "36.7", "36.8"][random.randint(0, 6)], # 随机体温
+                        "2d4135d558f849e18a5dcc87b884cce5": ["36.2", "36.3", "36.4", "36.5", "36.6", "36.7", "36.8"][random.randint(0, 6)], # 随机体温
                         "c77d35b16fb22ec70a1f33c315141dbb": util.get_time_no_second()}
             submit_result = yb.submit(json.dumps(dict_form, ensure_ascii=False), json.dumps(
                 ex, ensure_ascii=False), task_detail["WFId"])
