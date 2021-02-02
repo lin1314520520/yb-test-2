@@ -33,6 +33,8 @@ class YiBan:
         r = self.request(url="https://mobile.yiban.cn/api/v3/passport/login", params=params)
         if r is not None and str(r["response"]) == "100":
             self.access_token = r["data"]["user"]["access_token"]
+            
+            
             return r
         else:
             raise Exception("账号或密码错误")
